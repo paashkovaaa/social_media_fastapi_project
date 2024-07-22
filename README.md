@@ -1,4 +1,4 @@
-# FastAPI CRUD API with User Management and Auto-Reply Functionality
+# Social Media FastAPI
 
 This project is a FastAPI application that provides CRUD operations for users, posts, and comments, along with auto-reply functionality and basic content moderation.
 
