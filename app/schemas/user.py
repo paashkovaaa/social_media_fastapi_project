@@ -9,6 +9,8 @@ from app.schemas.post import Post
 class UserBase(BaseModel):
     username: str
     email: EmailStr
+    auto_reply: bool
+    reply_delay: int
 
 
 class UserCreate(UserBase):
