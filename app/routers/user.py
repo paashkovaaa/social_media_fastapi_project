@@ -7,7 +7,7 @@ from app.auth.auth import (
     get_current_active_user,
     get_db,
 )
-from app.crud.user import create_user, get_user_by_email, authenticate_user
+from app.crud.user import create_user, get_user_by_email, authenticate_user, update_user
 from app.schemas.user import UserCreate, User
 from datetime import timedelta
 
@@ -46,3 +46,15 @@ def login_for_access_token(
 @router.get("/me", response_model=User)
 def read_users_me(current_user: User = Depends(get_current_active_user)):
     return current_user
+
+
+@router.put("/me", response_model=User)
+def update_user_endpoint(
+    user_update: UserCreate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_active_user),
+):
+    updated_user = update_user(db, current_user.id, user_update)
+    if updated_user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return updated_user
