@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.orm import relationship
 from .post import DBPost
+from .comment import DBComment
 from app.database import Base
 
 
